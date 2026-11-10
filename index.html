@@ -104,7 +104,7 @@
   /* ----- Tables de multiplication ----- */
   #tables{display:none}
   body.tables #tables{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:calc(var(--vh)*1.2) .8vw;
-    --tf:clamp(11px,min(calc(var(--vh)*2.3),1.1vw),28px);flex:1;min-width:0;align-content:center}
+    --tf:clamp(11px,min(calc(var(--vh)*2.8),1.25vw),30px);flex:1;min-width:0;align-content:center}
   .tb{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:.55em .4em .6em;font-size:var(--tf)}
   .tb h3{margin:0 0 .3em;text-align:center;font-size:1.05em;color:var(--accent)}
   .tbg{display:grid;grid-template-columns:repeat(5,auto);justify-content:center;column-gap:.35em;line-height:1.25;
@@ -127,7 +127,7 @@
     body.tables .side{width:min(90vw,700px)}
     body.tables .calc svg{width:calc(var(--vh)*5);height:calc(var(--vh)*5)}
     body.tables .info .v{font-size:clamp(16px,calc(var(--vh)*2.6),34px)}
-    body.tables #tables{flex:none;width:100%;--tf:clamp(10px,min(calc(var(--vh)*1.2),2vw),22px)}
+    body.tables #tables{flex:none;width:100%;--tf:clamp(10px,min(calc(var(--vh)*1.55),2.3vw),24px)}
     .bar{gap:6px} .bar .sep{margin:0 2px}
     .bar button{padding:10px 11px;min-width:46px}
   }
@@ -182,7 +182,7 @@
     <label class="check">
       <input id="tablesOk" type="checkbox">
       <span style="font-size:22px;width:34px;text-align:center;font-weight:700">×</span>
-      <span>Afficher les tables de multiplication (3 à 9, 11 et 12)</span>
+      <span>Afficher les tables de multiplication (3 à 9, 11 à 13)</span>
     </label>
     <label class="check">
       <input id="soundOk" type="checkbox" checked>
@@ -409,10 +409,10 @@
 
   // Tables de multiplication
   (() => {
-    const t = [3,4,5,6,7,8,9,11,12];
+    const t = [3,4,5,6,7,8,9,11,12,13];
     $('tables').innerHTML = t.map(n => {
       let g = '';
-      for (let k = 1; k <= 10; k++) g += `<span>${n}</span><span>×</span><span>${k}</span><span>=</span><b>${n*k}</b>`;
+      for (let k = 3; k <= 9; k++) g += `<span>${n}</span><span>×</span><span>${k}</span><span>=</span><b>${n*k}</b>`;
       return `<div class="tb"><h3>Table de ${n}</h3><div class="tbg">${g}</div></div>`;
     }).join('');
   })();
