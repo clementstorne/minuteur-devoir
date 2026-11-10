@@ -10,8 +10,9 @@
   :root{
     --bg:#f6f4ef; --card:#ffffff; --ink:#1d2433; --muted:#6b7280; --line:#e4e0d6;
     --ok:#1f8a70; --warn:#e08a1e; --bad:#d23c3c; --accent:#2f5dd0;
-    --ring:var(--ok);
+    --ring:var(--ok); --vh:1vh;
   }
+  @supports (height:100dvh){ :root{--vh:1dvh} }
   *{box-sizing:border-box}
   html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);
     font-family:"Atkinson Hyperlegible",system-ui,sans-serif}
@@ -51,8 +52,9 @@
     padding:calc(2.2vh + env(safe-area-inset-top)) calc(3vw + env(safe-area-inset-right))
             calc(2.2vh + env(safe-area-inset-bottom)) calc(3vw + env(safe-area-inset-left))}
   #exam header{text-align:center;font-size:clamp(20px,3.6vh,44px);font-weight:700;min-height:1em}
-  .stage{display:flex;align-items:center;justify-content:center;gap:5vw;min-height:0;overflow:hidden}
-  .ringwrap{--s:min(calc(100vh - 220px),56vw);width:var(--s);height:var(--s);position:relative;flex:none}
+  .stage{--s:min(calc(var(--vh)*100 - 220px),56vw);display:flex;align-items:center;justify-content:center;gap:3vw;min-height:0;overflow:hidden}
+  .main{display:flex;align-items:center;justify-content:center;gap:5vw}
+  .ringwrap{width:var(--s);height:var(--s);position:relative;flex:none}
   .ringwrap svg{width:100%;height:100%;transform:rotate(-90deg)}
   .track{fill:none;stroke:#e6e2d8;stroke-width:7}
   .prog{fill:none;stroke:var(--ring);stroke-width:7;stroke-linecap:round;transition:stroke .6s, stroke-dashoffset .25s linear}
@@ -92,16 +94,45 @@
   @keyframes pulse{50%{opacity:.35}}
 
   @media (max-aspect-ratio: 1/1){
-    .stage{flex-direction:column;gap:3vh}
-    .ringwrap{--s:min(calc(55vh - 120px),86vw)}
+    .stage{--s:min(calc(var(--vh)*55 - 120px),86vw);flex-direction:column;gap:3vh}
+    .main{flex-direction:column;gap:3vh}
     .side{flex-direction:row;align-items:flex-start;width:min(90vw,700px)}
     .side > *{flex:1}
     .calc svg{width:min(11vh,15vw);height:min(11vh,15vw)}
   }
-  @supports (height:100dvh){
-    .ringwrap{--s:min(calc(100dvh - 220px),56vw)}
-    @media (max-aspect-ratio: 1/1){ .ringwrap{--s:min(calc(55dvh - 120px),86vw)} }
+
+  /* ----- Tables de multiplication ----- */
+  #tables{display:none}
+  body.tables #tables{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:calc(var(--vh)*1.2) .8vw;
+    --tf:clamp(11px,min(calc(var(--vh)*2.3),1.1vw),28px);flex:1;min-width:0;align-content:center}
+  .tb{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:.55em .4em .6em;font-size:var(--tf)}
+  .tb h3{margin:0 0 .3em;text-align:center;font-size:1.05em;color:var(--accent)}
+  .tbg{display:grid;grid-template-columns:repeat(5,auto);justify-content:center;column-gap:.35em;line-height:1.25;
+    font-variant-numeric:tabular-nums}
+  .tbg span:nth-child(5n+1),.tbg span:nth-child(5n+3),.tbg b{text-align:right}
+  .tbg span:nth-child(5n+2),.tbg span:nth-child(5n+4){color:var(--muted)}
+  .tbg b{font-weight:700}
+  body.tables .stage{--s:min(calc(var(--vh)*100 - 430px),30vw);justify-content:space-between}
+  body.tables .main{flex-direction:column;gap:calc(var(--vh)*2.5);flex:none}
+  body.tables .side{flex-direction:row;align-items:stretch;width:max(var(--s),30vw);gap:1vw}
+  body.tables .side > *{flex:1}
+  body.tables .calc{padding:calc(var(--vh)*1.4) .6vw;gap:calc(var(--vh)*.6);border-radius:18px}
+  body.tables .calc svg{width:min(calc(var(--vh)*9),6vw);height:min(calc(var(--vh)*9),6vw)}
+  body.tables .calc .lbl{font-size:clamp(12px,calc(var(--vh)*2),22px)}
+  body.tables .info{display:flex;flex-direction:column;justify-content:center;padding:calc(var(--vh)*1.2) .6vw;border-radius:18px}
+  body.tables .info .v{font-size:clamp(14px,min(calc(var(--vh)*3.4),2.1vw),40px);white-space:nowrap}
+  @media (max-aspect-ratio: 1/1){
+    body.tables .stage{--s:min(calc(var(--vh)*24 - 30px),60vw);justify-content:safe center;gap:calc(var(--vh)*1.6)}
+    body.tables .main{gap:calc(var(--vh)*1.6)}
+    body.tables .side{width:min(90vw,700px)}
+    body.tables .calc svg{width:calc(var(--vh)*5);height:calc(var(--vh)*5)}
+    body.tables .info .v{font-size:clamp(16px,calc(var(--vh)*2.6),34px)}
+    body.tables #tables{flex:none;width:100%;--tf:clamp(10px,min(calc(var(--vh)*1.2),2vw),22px)}
+    .bar{gap:6px} .bar .sep{margin:0 2px}
+    .bar button{padding:10px 11px;min-width:46px}
   }
+  .bar button.on{background:#e8eefc;border-color:var(--accent)}
+
   /* Sur écran tactile : boutons plus grands, masquage moins rapide */
   @media (pointer: coarse){ .bar button{padding:12px 18px;font-size:19px} }
 </style>
@@ -149,6 +180,11 @@
       <span>Calculatrice autorisée</span>
     </label>
     <label class="check">
+      <input id="tablesOk" type="checkbox">
+      <span style="font-size:22px;width:34px;text-align:center;font-weight:700">×</span>
+      <span>Afficher les tables de multiplication (3 à 9, 11 et 12)</span>
+    </label>
+    <label class="check">
       <input id="soundOk" type="checkbox" checked>
       <span style="font-size:26px;width:34px;text-align:center">🔔</span>
       <span>Signal sonore à la fin</span>
@@ -156,7 +192,7 @@
 
     <div class="err" id="err"></div>
     <button class="go" id="start" type="button">Lancer le devoir</button>
-    <div class="hint">Raccourcis pendant le devoir : <b>Espace</b> pause · <b>F</b> plein écran · <b>↑ / ↓</b> ±1 min · <b>C</b> calculatrice</div>
+    <div class="hint">Raccourcis pendant le devoir : <b>Espace</b> pause · <b>F</b> plein écran · <b>↑ / ↓</b> ±1 min · <b>C</b> calculatrice · <b>T</b> tables</div>
   </div>
 </section>
 
@@ -165,6 +201,7 @@
   <header id="hTitle"></header>
 
   <div class="stage">
+   <div class="main">
     <div class="ringwrap">
       <svg viewBox="0 0 100 100">
         <circle class="track" cx="50" cy="50" r="45"/>
@@ -200,6 +237,8 @@
         <div class="v" id="nowShow">—</div>
       </div>
     </div>
+   </div>
+   <div id="tables" aria-label="Tables de multiplication"></div>
   </div>
 
   <div class="bar" id="bar">
@@ -210,6 +249,7 @@
     <button class="plus"  data-d="1"  type="button">+1</button>
     <button class="plus"  data-d="5"  type="button">+5</button>
     <span class="sep"></span>
+    <button id="bTables" type="button">× Tables</button>
     <button id="bFs" type="button">⛶ Plein écran</button>
     <button id="bReset" class="danger" type="button">Terminer</button>
   </div>
@@ -243,7 +283,7 @@
   let endAt = null;          // timestamp de fin (si en cours)
   let pausedLeft = null;     // ms restants (si en pause)
   let total = 0;             // durée totale de référence pour l'anneau
-  let calc = false, sound = true, rang = false, timer = null;
+  let calc = false, tables = false, sound = true, rang = false, timer = null;
   let audioCtx = null, wakeLock = null;
 
   /* ----- préférences locales ----- */
@@ -257,6 +297,7 @@
   if (saved.m != null) $('durM').value = saved.m;
   if (saved.calc != null) $('calcOk').checked = saved.calc;
   if (saved.sound != null) $('soundOk').checked = saved.sound;
+  if (saved.tables != null) $('tablesOk').checked = saved.tables;
 
   // heure de fin par défaut : maintenant + 55 min, arrondie à 5 min
   (() => { const d = new Date(Date.now() + 55*MIN); d.setMinutes(Math.ceil(d.getMinutes()/5)*5);
@@ -301,12 +342,12 @@
       ms = d.getTime() - Date.now();
       if (ms <= 0){ $('err').textContent = 'Cette heure est déjà passée.'; return; }
     }
-    calc = $('calcOk').checked; sound = $('soundOk').checked;
-    store.set({ title:$('title').value, h:$('durH').value, m:$('durM').value, calc, sound });
+    calc = $('calcOk').checked; sound = $('soundOk').checked; tables = $('tablesOk').checked;
+    store.set({ title:$('title').value, h:$('durH').value, m:$('durM').value, calc, sound, tables });
 
     total = ms; endAt = Date.now() + ms; pausedLeft = null; rang = false;
     $('hTitle').textContent = $('title').value.trim();
-    renderCalc();
+    renderCalc(); renderTables();
     $('setup').classList.add('hidden'); $('exam').classList.remove('hidden');
     document.body.classList.remove('over');
     if (sound) { try { audioCtx = audioCtx || new (window.AudioContext||window.webkitAudioContext)(); audioCtx.resume(); } catch(e){} }
@@ -366,6 +407,21 @@
   }
   $('calcCard').onclick = () => { calc = !calc; renderCalc(); };
 
+  // Tables de multiplication
+  (() => {
+    const t = [3,4,5,6,7,8,9,11,12];
+    $('tables').innerHTML = t.map(n => {
+      let g = '';
+      for (let k = 1; k <= 10; k++) g += `<span>${n}</span><span>×</span><span>${k}</span><span>=</span><b>${n*k}</b>`;
+      return `<div class="tb"><h3>Table de ${n}</h3><div class="tbg">${g}</div></div>`;
+    }).join('');
+  })();
+  function renderTables(){
+    document.body.classList.toggle('tables', tables);
+    $('bTables').classList.toggle('on', tables);
+  }
+  $('bTables').onclick = () => { tables = !tables; renderTables(); };
+
   // Terminer : double confirmation sans boîte de dialogue
   $('bReset').onclick = () => {
     const b = $('bReset');
@@ -376,7 +432,7 @@
     }
     b.classList.remove('armed'); b.textContent = 'Terminer';
     clearInterval(timer); endAt = null; pausedLeft = null; $('bPause').textContent = 'Pause';
-    document.body.classList.remove('over','idle');
+    document.body.classList.remove('over','idle','tables');
     $('exam').classList.add('hidden'); $('setup').classList.remove('hidden');
     exitFs(); releaseWake();
   };
@@ -419,6 +475,7 @@
     else if (e.key === 'ArrowUp' || e.key === '+'){ e.preventDefault(); addMin(1); }
     else if (e.key === 'ArrowDown' || e.key === '-'){ e.preventDefault(); addMin(-1); }
     else if (e.key === 'c' || e.key === 'C'){ calc = !calc; renderCalc(); }
+    else if (e.key === 't' || e.key === 'T'){ tables = !tables; renderTables(); }
   });
 
   /* ----- son ----- */

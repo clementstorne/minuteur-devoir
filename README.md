@@ -10,6 +10,7 @@ Une page web toute simple à projeter en classe pendant les évaluations, dans l
 - **Affichage visuel et numérique** : un anneau qui se vide, avec le temps restant en grand au centre.
 - **Code couleur** : l'anneau passe du vert à l'orange, puis au rouge à l'approche de la fin.
 - **Pictogramme calculatrice** bien visible : *autorisée* ou *interdite*. On peut changer en cours de devoir en cliquant dessus.
+- **Tables de multiplication** (3 à 9, 11 et 12) affichables à côté du minuteur, par exemple quand la calculatrice est interdite. Elles s'activent au réglage ou avec le bouton « Tables » en cours de devoir.
 - **Ajustement du temps** avec les boutons −5, −1, +1 et +5 minutes.
 - **Pause / reprise** du minuteur.
 - **Mode plein écran** : les boutons et le curseur se masquent après quelques secondes d'inactivité.
@@ -28,13 +29,14 @@ Une page web toute simple à projeter en classe pendant les évaluations, dans l
 | `↑` ou `+` | Ajouter 1 minute |
 | `↓` ou `-` | Retirer 1 minute |
 | `C` | Calculatrice autorisée / interdite |
+| `T` | Afficher / masquer les tables de multiplication |
 | `Entrée` | Lancer le devoir (depuis l'écran de réglage) |
 
 ## Utilisation
 
 1. Ouvrir la page et saisir un titre (facultatif).
 2. Choisir le mode **Durée** ou **Heure de fin**.
-3. Cocher ou non **Calculatrice autorisée** et **Signal sonore à la fin**.
+3. Cocher ou non **Calculatrice autorisée**, **Afficher les tables de multiplication** et **Signal sonore à la fin**.
 4. Cliquer sur **Lancer le devoir**, puis passer en plein écran (bouton ou touche `F`).
 5. Pour arrêter, cliquer deux fois sur **Terminer** : la double confirmation évite les arrêts accidentels.
 
