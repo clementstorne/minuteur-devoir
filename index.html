@@ -112,6 +112,7 @@
   .tbg span:nth-child(5n+1),.tbg span:nth-child(5n+3),.tbg b{text-align:right}
   .tbg span:nth-child(5n+2),.tbg span:nth-child(5n+4){color:var(--muted)}
   .tbg b{font-weight:700}
+  .tbg .gap{padding-top:.4em}
   body.tables .stage{--s:min(calc(var(--vh)*100 - 430px),30vw);justify-content:space-between}
   body.tables .main{flex-direction:column;gap:calc(var(--vh)*2.5);flex:none}
   body.tables .side{flex-direction:row;align-items:stretch;width:max(var(--s),30vw);gap:1vw}
@@ -127,7 +128,7 @@
     body.tables .side{width:min(90vw,700px)}
     body.tables .calc svg{width:calc(var(--vh)*5);height:calc(var(--vh)*5)}
     body.tables .info .v{font-size:clamp(16px,calc(var(--vh)*2.6),34px)}
-    body.tables #tables{flex:none;width:100%;--tf:clamp(10px,min(calc(var(--vh)*1.55),2.3vw),24px)}
+    body.tables #tables{flex:none;width:100%;--tf:clamp(10px,min(calc(var(--vh)*1.22),2.3vw),22px)}
     .bar{gap:6px} .bar .sep{margin:0 2px}
     .bar button{padding:10px 11px;min-width:46px}
   }
@@ -412,7 +413,7 @@
     const t = [3,4,5,6,7,8,9,11,12,13];
     $('tables').innerHTML = t.map(n => {
       let g = '';
-      for (let k = 3; k <= 9; k++) g += `<span>${n}</span><span>×</span><span>${k}</span><span>=</span><b>${n*k}</b>`;
+      for (const k of [3,4,5,6,7,8,9,11,12,13]) { const c = k === 11 ? ' class="gap"' : ''; g += `<span${c}>${n}</span><span${c}>×</span><span${c}>${k}</span><span${c}>=</span><b${c}>${n*k}</b>`; }
       return `<div class="tb"><h3>Table de ${n}</h3><div class="tbg">${g}</div></div>`;
     }).join('');
   })();
