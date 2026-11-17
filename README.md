@@ -6,7 +6,8 @@ Une page web toute simple à projeter en classe pendant les évaluations, dans l
 
 ## Fonctionnalités
 
-- **Deux façons de régler le temps** : une durée (avec des raccourcis 10 min, 20 min, 30 min, 45 min, 55 min, 1 h, 2 h) ou une heure de fin.
+- **Deux façons de régler le temps** : une durée (avec des raccourcis 10 min, 20 min, 30 min, 45 min, 55 min, 1 h, 2 h) ou des horaires (heure de fin, et heure de début facultative).
+- **Démarrage programmé** : en mode « Horaires », on peut aussi saisir une heure de début. Le minuteur attend alors cette heure et démarre tout seul, et l'anneau représente toute la durée de l'épreuve. Le bouton « Démarrer maintenant » permet de lancer plus tôt sans changer l'heure de fin.
 - **Affichage visuel et numérique** : un anneau qui se vide, avec le temps restant en grand au centre.
 - **Code couleur** : l'anneau passe du vert à l'orange, puis au rouge à l'approche de la fin.
 - **Pictogramme calculatrice** bien visible : *autorisée* ou *interdite*. On peut changer en cours de devoir en cliquant dessus.
@@ -35,7 +36,7 @@ Une page web toute simple à projeter en classe pendant les évaluations, dans l
 ## Utilisation
 
 1. Ouvrir la page et saisir un titre (facultatif).
-2. Choisir le mode **Durée** ou **Heure de fin**.
+2. Choisir le mode **Durée** ou **Horaires** (heure de fin, et heure de début si on veut programmer le démarrage).
 3. Cocher ou non **Calculatrice autorisée**, **Afficher les tables de multiplication** et **Signal sonore à la fin**.
 4. Cliquer sur **Lancer le devoir**, puis passer en plein écran (bouton ou touche `F`).
 5. Pour arrêter, cliquer deux fois sur **Terminer** : la double confirmation évite les arrêts accidentels.
