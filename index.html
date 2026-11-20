@@ -131,7 +131,8 @@
     body.tables .info .v{font-size:clamp(16px,calc(var(--vh)*2.6),34px)}
     body.tables #tables{flex:none;width:100%;--tf:clamp(10px,min(calc(var(--vh)*1.22),2.3vw),22px)}
     .bar{gap:6px} .bar .sep{margin:0 2px}
-    .bar button{padding:10px 11px;min-width:46px}
+    .bar button{padding:10px 9px;min-width:42px;font-size:16px}
+    .bar{gap:5px}
   }
   .bar button.on{background:#e8eefc;border-color:var(--accent)}
 
@@ -151,9 +152,10 @@
   body.copie #exam > header, body.copie #exam > .stage, body.copie #exam > .bar{position:relative;z-index:1}
   body.copie #exam{--u:min(calc(var(--vh) * 100 / 21), 3.3vw);--cw:100vw}
   body.copie #hTitle{visibility:hidden}
-  #copie .trou{position:absolute;left:calc(var(--u) * .7);width:calc(var(--u) * .72);height:calc(var(--u) * .72);
-    margin:calc(var(--u) * -.36) 0 0 calc(var(--u) * -.36);border-radius:50%;background:#dcd8cf;
+  #copie .trou{position:absolute;left:calc(var(--u) * 1.24);width:calc(var(--u) * .52);height:calc(var(--u) * .52);
+    transform:translate(-50%,-50%);border-radius:calc(var(--u) * .26);background:#dcd8cf;
     box-shadow:inset 0 calc(var(--u) * .06) calc(var(--u) * .12) rgba(0,0,0,.28), 0 0 0 1px rgba(0,0,0,.06)}
+  #copie .trou.o{height:calc(var(--u) * 1.3)}
   #copie .marge{position:absolute;top:0;bottom:0;left:calc(var(--u) * 5);width:2px;background:#e25a5a}
   #copie .bleu{position:absolute;left:0;width:var(--cw);height:2px;background:#2a6fc0}
   #copie .t{position:absolute;font-family:"Playwrite FR Trad",cursive;font-weight:300;color:#1f5fae;
@@ -245,7 +247,7 @@
 
     <div class="err" id="err"></div>
     <button class="go" id="start" type="button">Lancer le devoir</button>
-    <div class="hint">Raccourcis pendant le devoir : <b>Espace</b> pause · <b>F</b> plein écran · <b>↑ / ↓</b> ±1 min · <b>C</b> calculatrice · <b>T</b> tables · <b>M</b> modèle de copie</div>
+    <div class="hint">Raccourcis pendant le devoir : <b>Espace</b> pause · <b>F</b> plein écran · <b>↑ / ↓</b> ±1 min · <b>C</b> calculatrice · <b>T</b> tables · <b>M</b> présentation de la copie</div>
   </div>
 </section>
 
@@ -253,14 +255,19 @@
 <section id="exam" class="hidden">
   <div id="copie" aria-hidden="true">
     <div class="marge"></div>
-    <div class="trou" style="top:calc(var(--u) * 3.5)"></div>
-    <div class="trou" style="top:calc(var(--u) * 13.5)"></div>
-    <div class="trou" style="top:calc(var(--u) * 23.5)"></div>
-    <div class="trou" style="top:calc(var(--u) * 33.5)"></div>
+    <div class="trou r" style="top:calc(var(--u) * 3.14)"></div>
+    <div class="trou o" style="top:calc(var(--u) * 5.0)"></div>
+    <div class="trou r" style="top:calc(var(--u) * 11.84)"></div>
+    <div class="trou o" style="top:calc(var(--u) * 13.5)"></div>
+    <div class="trou r" style="top:calc(var(--u) * 18.1)"></div>
+    <div class="trou o" style="top:calc(var(--u) * 22.9)"></div>
+    <div class="trou r" style="top:calc(var(--u) * 24.5)"></div>
+    <div class="trou o" style="top:calc(var(--u) * 31.3)"></div>
+    <div class="trou r" style="top:calc(var(--u) * 33.5)"></div>
     <div class="bleu" style="top:calc(var(--u) * 8)"></div>
     <div class="bleu" style="top:calc(var(--u) * 13)"></div>
-    <div class="t" style="top:calc(var(--u) * 4);left:calc(var(--u) * 1.3)">Nom Prénom</div>
-    <div class="t" id="cpClasse" style="top:calc(var(--u) * 5);left:calc(var(--u) * 1.3)">Classe</div>
+    <div class="t" style="top:calc(var(--u) * 4);left:calc(var(--u) * 1.75)">Nom Prénom</div>
+    <div class="t" id="cpClasse" style="top:calc(var(--u) * 5);left:calc(var(--u) * 1.75)">Classe</div>
     <div class="t" id="cpDate" style="top:calc(var(--u) * 4);right:calc(100% - var(--cw) + var(--u) * .4)">Date</div>
     <div class="t c" style="top:calc(var(--u) * 6)">Mathématiques</div>
     <div class="t c" id="cpTitre" style="top:calc(var(--u) * 7)"></div>
@@ -321,7 +328,7 @@
     <button class="plus"  data-d="5"  type="button">+5</button>
     <span class="sep"></span>
     <button id="bTables" type="button">× Tables</button>
-    <button id="bCopie" type="button">✎ Copie</button>
+    <button id="bCopie" type="button">✎ Présentation</button>
     <button id="bFs" type="button">⛶ Plein écran</button>
     <button id="bReset" class="danger" type="button">Terminer</button>
   </div>
