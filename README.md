@@ -12,7 +12,7 @@ Une page web toute simple à projeter en classe pendant les évaluations, dans l
 - **Code couleur** : l'anneau passe du vert à l'orange, puis au rouge à l'approche de la fin.
 - **Pictogramme calculatrice** bien visible : *autorisée* ou *interdite*. On peut changer en cours de devoir en cliquant dessus.
 - **Tables de multiplication** (3 à 9, 11, 12 et 13, de ×3 à ×9 puis ×11 à ×13) affichables à côté du minuteur, par exemple quand la calculatrice est interdite. Elles s'activent au réglage ou avec le bouton « Tables » en cours de devoir.
-- **Modèle de copie** à la demande (bouton « Copie » ou touche `M`) : fond de page à grands carreaux (Seyès) avec la présentation attendue (Nom Prénom, classe, date du jour, « Mathématiques » et titre du devoir, « Exercice 1 », 1., 2., 3.), écrite en cursive. Le minuteur et les encarts restent visibles à droite (en bas sur iPad en portrait).
+- **Modèle de copie** à la demande (bouton « Copie » ou touche `M`) : fond de page à grands carreaux (Seyès) avec la présentation attendue (Nom Prénom, classe, date du jour, « Mathématiques » et titre du devoir, « Exercice 1 », 1., 2., 3.), écrite en cursive. Les lignes occupent toute la largeur ; le minuteur et les encarts restent visibles par-dessus, en bas à droite (en bas sur iPad en portrait).
 - **Ajustement du temps** avec les boutons −5, −1, +1 et +5 minutes.
 - **Pause / reprise** du minuteur.
 - **Mode plein écran** : les boutons et le curseur se masquent après quelques secondes d'inactivité.

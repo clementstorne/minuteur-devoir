@@ -142,11 +142,13 @@
   #copie{display:none}
   body.copie #copie{display:block;position:absolute;inset:0;z-index:0;pointer-events:none;background-color:#fff;
     background-image:linear-gradient(90deg, rgba(196,140,214,.55) 1px, transparent 1px),
+                     linear-gradient(#fff, #fff),
                      linear-gradient(rgba(214,160,226,.38) 1px, transparent 1px);
-    background-size:var(--u) var(--u), 100% calc(var(--u) / 4);
-    background-position:calc(var(--u) * 5) 0, 0 0}
+    background-size:var(--u) var(--u), 100% calc(var(--u) * 3), 100% calc(var(--u) / 4);
+    background-repeat:repeat, no-repeat, repeat;
+    background-position:calc(var(--u) * 5) 0, 0 0, 0 0}
   body.copie #exam > header, body.copie #exam > .stage, body.copie #exam > .bar{position:relative;z-index:1}
-  body.copie #exam{--u:min(calc(var(--vh) * 100 / 21), 3.3vw);--cw:68vw}
+  body.copie #exam{--u:min(calc(var(--vh) * 100 / 21), 3.3vw);--cw:100vw}
   body.copie #hTitle{visibility:hidden}
   #copie .marge{position:absolute;top:0;bottom:0;left:calc(var(--u) * 5);width:2px;background:#e25a5a}
   #copie .bleu{position:absolute;left:0;width:var(--cw);height:2px;background:#2a6fc0}
@@ -155,7 +157,7 @@
   #copie .c{left:0;width:var(--cw);text-align:center}
   #copie .ex{text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:.28em}
   #copie .num{text-align:right;width:calc(var(--u) * 1.2);left:calc(var(--u) * 3.6)}
-  body.copie .stage{--s:min(calc(var(--vh) * 100 - 400px), 24vw);justify-content:flex-end}
+  body.copie .stage{--s:min(calc(var(--vh) * 100 - var(--u) * 6 - 290px), 24vw);justify-content:flex-end;align-items:flex-end}
   body.copie .main{flex-direction:column;gap:calc(var(--vh) * 2.5);flex:none;width:26vw}
   body.copie .ringwrap{background:#fff;border-radius:50%;box-shadow:0 0 0 calc(var(--vh) * 1) #fff}
   body.copie .side{flex-direction:row;align-items:stretch;width:26vw;gap:.8vw}
