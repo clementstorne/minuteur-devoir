@@ -510,8 +510,7 @@
     document.body.classList.toggle('copie', copie);
     $('bCopie').classList.toggle('on', copie);
     if (!copie) return;
-    let d = new Date().toLocaleDateString('fr-FR', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
-    $('cpDate').textContent = d.charAt(0).toUpperCase() + d.slice(1);
+    $('cpDate').textContent = new Date().toLocaleDateString('fr-FR', { day:'2-digit', month:'2-digit', year:'2-digit' });
     $('cpClasse').textContent = $('classe').value.trim() || 'Classe';
     $('cpTitre').textContent = $('title').value.trim();
   }
