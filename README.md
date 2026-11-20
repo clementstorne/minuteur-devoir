@@ -12,6 +12,7 @@ Une page web toute simple à projeter en classe pendant les évaluations, dans l
 - **Code couleur** : l'anneau passe du vert à l'orange, puis au rouge à l'approche de la fin.
 - **Pictogramme calculatrice** bien visible : *autorisée* ou *interdite*. On peut changer en cours de devoir en cliquant dessus.
 - **Tables de multiplication** (3 à 9, 11, 12 et 13, de ×3 à ×9 puis ×11 à ×13) affichables à côté du minuteur, par exemple quand la calculatrice est interdite. Elles s'activent au réglage ou avec le bouton « Tables » en cours de devoir.
+- **Modèle de copie** à la demande (bouton « Copie » ou touche `M`) : fond de page à grands carreaux (Seyès) avec la présentation attendue (Nom Prénom, classe, date du jour, « Mathématiques » et titre du devoir, « Exercice 1 », 1., 2., 3.), écrite en cursive. Le minuteur et les encarts restent visibles à droite (en bas sur iPad en portrait).
 - **Ajustement du temps** avec les boutons −5, −1, +1 et +5 minutes.
 - **Pause / reprise** du minuteur.
 - **Mode plein écran** : les boutons et le curseur se masquent après quelques secondes d'inactivité.
@@ -31,11 +32,12 @@ Une page web toute simple à projeter en classe pendant les évaluations, dans l
 | `↓` ou `-` | Retirer 1 minute |
 | `C` | Calculatrice autorisée / interdite |
 | `T` | Afficher / masquer les tables de multiplication |
+| `M` | Afficher / masquer le modèle de copie |
 | `Entrée` | Lancer le devoir (depuis l'écran de réglage) |
 
 ## Utilisation
 
-1. Ouvrir la page et saisir un titre (facultatif).
+1. Ouvrir la page et saisir un titre et une classe (facultatifs ; ils servent aussi au modèle de copie).
 2. Choisir le mode **Durée** ou **Horaires** (heure de fin, et heure de début si on veut programmer le démarrage).
 3. Cocher ou non **Calculatrice autorisée**, **Afficher les tables de multiplication** et **Signal sonore à la fin**.
 4. Cliquer sur **Lancer le devoir**, puis passer en plein écran (bouton ou touche `F`).
@@ -43,6 +45,6 @@ Une page web toute simple à projeter en classe pendant les évaluations, dans l
 
 ## Technique
 
-Un seul fichier `index.html` (HTML, CSS et JavaScript), sans dépendance ni installation : seule la police Atkinson Hyperlegible est chargée depuis Google Fonts. La page fonctionne aussi hors ligne si on télécharge le fichier et qu'on l'ouvre dans un navigateur ; dans ce cas, une police système remplace Atkinson Hyperlegible.
+Un seul fichier `index.html` (HTML, CSS et JavaScript), sans dépendance ni installation : seules les polices Atkinson Hyperlegible et Playwrite FR Trad (cursive du modèle de copie) sont chargées depuis Google Fonts. La page fonctionne aussi hors ligne si on télécharge le fichier et qu'on l'ouvre dans un navigateur ; dans ce cas, des polices système les remplacent.
 
 Le site est hébergé avec GitHub Pages depuis la branche `main`.

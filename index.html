@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Minuteur de devoir</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Playwrite+FR+Trad:wght@300;400&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg:#f6f4ef; --card:#ffffff; --ink:#1d2433; --muted:#6b7280; --line:#e4e0d6;
@@ -49,7 +49,7 @@
   .hint{color:var(--muted);font-size:13px;margin-top:14px;text-align:center}
 
   /* ---------- Écran du devoir ---------- */
-  #exam{height:100vh;height:100dvh;overflow:hidden;display:grid;grid-template-rows:auto minmax(0,1fr) auto;
+  #exam{position:relative;height:100vh;height:100dvh;overflow:hidden;display:grid;grid-template-rows:auto minmax(0,1fr) auto;
     padding:calc(2.2vh + env(safe-area-inset-top)) calc(3vw + env(safe-area-inset-right))
             calc(2.2vh + env(safe-area-inset-bottom)) calc(3vw + env(safe-area-inset-left))}
   #exam header{text-align:center;font-size:clamp(20px,3.6vh,44px);font-weight:700;min-height:1em}
@@ -137,6 +137,44 @@
 
   /* Sur écran tactile : boutons plus grands, masquage moins rapide */
   @media (pointer: coarse){ .bar button{padding:12px 18px;font-size:19px} }
+
+  /* ----- Modèle de copie (papier Seyès) ----- */
+  #copie{display:none}
+  body.copie #copie{display:block;position:absolute;inset:0;z-index:0;pointer-events:none;background-color:#fff;
+    background-image:linear-gradient(90deg, rgba(196,140,214,.55) 1px, transparent 1px),
+                     linear-gradient(rgba(214,160,226,.38) 1px, transparent 1px);
+    background-size:var(--u) var(--u), 100% calc(var(--u) / 4);
+    background-position:calc(var(--u) * 5) 0, 0 0}
+  body.copie #exam > header, body.copie #exam > .stage, body.copie #exam > .bar{position:relative;z-index:1}
+  body.copie #exam{--u:min(calc(var(--vh) * 100 / 21), 3.3vw);--cw:68vw}
+  body.copie #hTitle{visibility:hidden}
+  #copie .marge{position:absolute;top:0;bottom:0;left:calc(var(--u) * 5);width:2px;background:#e25a5a}
+  #copie .bleu{position:absolute;left:0;width:var(--cw);height:2px;background:#2a6fc0}
+  #copie .t{position:absolute;font-family:"Playwrite FR Trad",cursive;font-weight:300;color:#1f5fae;
+    font-size:calc(var(--u) * .46);line-height:1;white-space:nowrap;margin-top:-1em}
+  #copie .c{left:0;width:var(--cw);text-align:center}
+  #copie .ex{text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:.28em}
+  #copie .num{text-align:right;width:calc(var(--u) * 1.2);left:calc(var(--u) * 3.6)}
+  body.copie .stage{--s:min(calc(var(--vh) * 100 - 400px), 24vw);justify-content:flex-end}
+  body.copie .main{flex-direction:column;gap:calc(var(--vh) * 2.5);flex:none;width:26vw}
+  body.copie .ringwrap{background:#fff;border-radius:50%;box-shadow:0 0 0 calc(var(--vh) * 1) #fff}
+  body.copie .side{flex-direction:row;align-items:stretch;width:26vw;gap:.8vw}
+  body.copie .side > *{flex:1;box-shadow:0 2px 10px rgba(29,36,51,.08)}
+  body.copie .calc{padding:calc(var(--vh) * 1.4) .5vw;gap:calc(var(--vh) * .6);border-radius:18px}
+  body.copie .calc svg{width:min(calc(var(--vh) * 8),5vw);height:min(calc(var(--vh) * 8),5vw)}
+  body.copie .calc .lbl{font-size:clamp(12px,min(calc(var(--vh) * 1.9),1.15vw),22px)}
+  body.copie .info{display:flex;flex-direction:column;justify-content:center;padding:calc(var(--vh) * 1.2) .4vw;border-radius:18px}
+  body.copie .info .v{font-size:clamp(14px,min(calc(var(--vh) * 3.2),1.8vw),38px);white-space:nowrap}
+  body.copie .bar button{box-shadow:0 2px 8px rgba(29,36,51,.08)}
+  @media (max-aspect-ratio: 1/1){
+    body.copie #exam{--u:3.6vw;--cw:100vw}
+    body.copie .stage{--s:min(calc(var(--vh) * 100 - var(--u) * 19 - 190px), 42vw);align-items:center;justify-content:flex-end}
+    body.copie .main{flex-direction:row;width:auto;gap:4vw}
+    body.copie .side{flex-direction:column;width:40vw;gap:calc(var(--vh) * 1.2)}
+    body.copie .calc svg{width:calc(var(--vh) * 6);height:calc(var(--vh) * 6)}
+    body.copie .calc .lbl{font-size:clamp(13px,calc(var(--vh) * 1.8),22px)}
+    body.copie .info .v{font-size:clamp(16px,calc(var(--vh) * 2.6),34px)}
+  }
 </style>
 </head>
 <body>
@@ -149,6 +187,9 @@
 
     <label class="f" for="title">Titre affiché (facultatif)</label>
     <input id="title" class="txt" type="text" placeholder="Ex. : Évaluation n°3 – Fonctions affines">
+
+    <label class="f" for="classe">Classe (pour le modèle de copie, facultatif)</label>
+    <input id="classe" class="txt" type="text" placeholder="Ex. : 4e B">
 
     <label class="f">Mode</label>
     <div class="seg" role="tablist">
@@ -198,12 +239,26 @@
 
     <div class="err" id="err"></div>
     <button class="go" id="start" type="button">Lancer le devoir</button>
-    <div class="hint">Raccourcis pendant le devoir : <b>Espace</b> pause · <b>F</b> plein écran · <b>↑ / ↓</b> ±1 min · <b>C</b> calculatrice · <b>T</b> tables</div>
+    <div class="hint">Raccourcis pendant le devoir : <b>Espace</b> pause · <b>F</b> plein écran · <b>↑ / ↓</b> ±1 min · <b>C</b> calculatrice · <b>T</b> tables · <b>M</b> modèle de copie</div>
   </div>
 </section>
 
 <!-- ======== DEVOIR ======== -->
 <section id="exam" class="hidden">
+  <div id="copie" aria-hidden="true">
+    <div class="marge"></div>
+    <div class="bleu" style="top:calc(var(--u) * 8)"></div>
+    <div class="bleu" style="top:calc(var(--u) * 13)"></div>
+    <div class="t" style="top:calc(var(--u) * 4);left:calc(var(--u) * 1.3)">Nom Prénom</div>
+    <div class="t" id="cpClasse" style="top:calc(var(--u) * 5);left:calc(var(--u) * 1.3)">Classe</div>
+    <div class="t" id="cpDate" style="top:calc(var(--u) * 4);right:calc(100% - var(--cw) + var(--u) * .4)">Date</div>
+    <div class="t c" style="top:calc(var(--u) * 6)">Mathématiques</div>
+    <div class="t c" id="cpTitre" style="top:calc(var(--u) * 7)"></div>
+    <div class="t ex" style="top:calc(var(--u) * 14);left:calc(var(--u) * 5 + 4px)">Exercice 1</div>
+    <div class="t num" style="top:calc(var(--u) * 16)">1.</div>
+    <div class="t num" style="top:calc(var(--u) * 17)">2.</div>
+    <div class="t num" style="top:calc(var(--u) * 18)">3.</div>
+  </div>
   <header id="hTitle"></header>
 
   <div class="stage">
@@ -256,6 +311,7 @@
     <button class="plus"  data-d="5"  type="button">+5</button>
     <span class="sep"></span>
     <button id="bTables" type="button">× Tables</button>
+    <button id="bCopie" type="button">✎ Copie</button>
     <button id="bFs" type="button">⛶ Plein écran</button>
     <button id="bReset" class="danger" type="button">Terminer</button>
   </div>
@@ -290,7 +346,7 @@
   let startAt = null;        // timestamp de début programmé (si en attente)
   let pausedLeft = null;     // ms restants (si en pause)
   let total = 0;             // durée totale de référence pour l'anneau
-  let calc = false, tables = false, sound = true, rang = false, timer = null;
+  let calc = false, tables = false, copie = false, sound = true, rang = false, timer = null;
   let audioCtx = null, wakeLock = null;
 
   /* ----- préférences locales ----- */
@@ -305,6 +361,7 @@
   if (saved.calc != null) $('calcOk').checked = saved.calc;
   if (saved.sound != null) $('soundOk').checked = saved.sound;
   if (saved.tables != null) $('tablesOk').checked = saved.tables;
+  if (saved.classe) $('classe').value = saved.classe;
 
   // heure de fin par défaut : maintenant + 55 min, arrondie à 5 min
   (() => { const d = new Date(Date.now() + 55*MIN); d.setMinutes(Math.ceil(d.getMinutes()/5)*5);
@@ -355,7 +412,7 @@
       et = e; ms = e - Date.now();
     }
     calc = $('calcOk').checked; sound = $('soundOk').checked; tables = $('tablesOk').checked;
-    store.set({ title:$('title').value, h:$('durH').value, m:$('durM').value, calc, sound, tables });
+    store.set({ title:$('title').value, h:$('durH').value, m:$('durM').value, calc, sound, tables, classe:$('classe').value });
 
     endAt = et != null ? et : Date.now() + ms; pausedLeft = null; rang = false;
     startAt = st;                          // peut être passé (devoir déjà commencé) ou futur (attente)
@@ -363,7 +420,8 @@
     if (startAt != null && startAt <= Date.now()) startAt = null;
     $('bPause').textContent = startAt ? 'Démarrer maintenant' : 'Pause';
     $('hTitle').textContent = $('title').value.trim();
-    renderCalc(); renderTables();
+    copie = false;
+    renderCalc(); renderTables(); renderCopie();
     $('setup').classList.add('hidden'); $('exam').classList.remove('hidden');
     document.body.classList.remove('over');
     if (sound) { try { audioCtx = audioCtx || new (window.AudioContext||window.webkitAudioContext)(); audioCtx.resume(); } catch(e){} }
@@ -445,7 +503,19 @@
       return `<div class="tb"><h3>Table de ${n}</h3><div class="tbg">${g}</div></div>`;
     }).join('');
   })();
+  function renderCopie(){
+    if (copie && tables){ tables = false; renderTables(); }
+    document.body.classList.toggle('copie', copie);
+    $('bCopie').classList.toggle('on', copie);
+    if (!copie) return;
+    let d = new Date().toLocaleDateString('fr-FR', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
+    $('cpDate').textContent = d.charAt(0).toUpperCase() + d.slice(1);
+    $('cpClasse').textContent = $('classe').value.trim() || 'Classe';
+    $('cpTitre').textContent = $('title').value.trim();
+  }
+  $('bCopie').onclick = () => { copie = !copie; renderCopie(); };
   function renderTables(){
+    if (tables && copie){ copie = false; renderCopie(); }
     document.body.classList.toggle('tables', tables);
     $('bTables').classList.toggle('on', tables);
   }
@@ -461,7 +531,7 @@
     }
     b.classList.remove('armed'); b.textContent = 'Terminer';
     clearInterval(timer); endAt = null; startAt = null; pausedLeft = null; $('bPause').textContent = 'Pause';
-    document.body.classList.remove('over','idle','tables');
+    document.body.classList.remove('over','idle','tables','copie'); copie = false;
     $('exam').classList.add('hidden'); $('setup').classList.remove('hidden');
     exitFs(); releaseWake();
   };
@@ -505,6 +575,7 @@
     else if (e.key === 'ArrowDown' || e.key === '-'){ e.preventDefault(); addMin(-1); }
     else if (e.key === 'c' || e.key === 'C'){ calc = !calc; renderCalc(); }
     else if (e.key === 't' || e.key === 'T'){ tables = !tables; renderTables(); }
+    else if (e.key === 'm' || e.key === 'M'){ copie = !copie; renderCopie(); }
   });
 
   /* ----- son ----- */
